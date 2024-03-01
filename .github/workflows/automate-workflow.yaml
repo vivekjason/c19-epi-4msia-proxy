@@ -1,0 +1,49 @@
+name: automate-workflow
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  update-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+      
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Run R Scripts to Update Data and Plots
+      run: |
+        docker run --rm \
+        -v "${{ github.workspace }}:/workspace" \
+        vivekjason/c19-epi-4msia-proxy \
+        Rscript -e "
+        setwd('/workspace'); \
+        source('scripts/datacleaning.R'); \
+        source('scripts/bar_plot_basic_death_curves.R'); \
+        source('scripts/bar_plot_basic_epid_curves.R'); \
+        source('scripts/bar_plot_breakdown_death_curves.R'); \
+        source('scripts/bar_plot_breakdown_epid_curves.R'); \
+        source('scripts/line_plot_hosp_capacity.R'); \
+        source('scripts/line_plot_incidence_7day.R'); \
+        source('scripts/line_plot_mortality_7day.R'); \
+        source('scripts/line_plot_rt.R'); \
+        source('scripts/reactable_hospital_cap.R'); \
+        source('scripts/reactable_week_report.R');"
+      shell: bash
+
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: vivekjason/c19-epi-4msia-proxy:latest
