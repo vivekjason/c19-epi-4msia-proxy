@@ -1,0 +1,141 @@
+Types of variable,Variables in dataset,Variable definition,Missing observations,Source,Dataset
+Date,date,Reported between 17/03/2021-13/07/2021,0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Continuous ,death_id,Reported between 17/03/2021-13/07/2021,0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Continuous ,case_id,Reported between 17/03/2021-08/04/2021,5076,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Categorical,state,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, and xvi) Wilayah Perseketuan Labuan ",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,gender,i) Male or ii) Female,0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Categorical,death_location,i) Hospital or ii) Brought-in-dead,0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,nationality,i) Malaysian or ii) Non-Malaysian,5,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Continuous ,age,Numeric  values between 1-130,1,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Categorical,hospital,Name of hospital where death was proclaimed ,0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,comorbid_status,"0- No Comborbid rreported,
+1- At least 1 comorbid rreported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Text,comorbids,Free-text description of comorbids suffered by patient,0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,diabetes,"0- Diabetes not reported
+1- Diabetes reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,hypertension,"0- Hypertension not reported
+1- Hypertension reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,heart disease,"0- Heart disease not reported
+1- Heart disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,dyslipidaemia,"0- Heart disease not reported
+1- Heart disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,stroke,"0- Stroke not reported
+1- Stroke reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,ckd,"0- Stroke not reported
+1- Stroke reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,obesity,"0- Obesity not reported
+1- Obesity reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,tb,"0- Tuberculosis not reported
+1- Tuberculosis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,copd,"0- Chronic Obstructive Pulmonary Disease not reported
+1- Chronic Obstructive Pulmonary Disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,asthma,"0- Asthma not reported
+1- Asthma reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,bph,"0- Benign Prostatic Hyperplasia not reported
+1- Benign Prostatic Hyperplasia reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,gout,"0- Gout not reported
+1- Gout reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,thyroid_disease,"0- Thyroid-related diseases (Hyper- and Hypo- thyroidism) not reported
+1- Thyroid-related diseases (Hyper- and Hypo- thyroidism) reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,psoriasis,"0- Psoriasis not reported
+1- Psoriasis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,spinal_disease,"0- Diseases of the Spine (Spondylolisthesis etc) not reported
+1- Diseases of the Spine (Spondylolisthesis etc) reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,cancer/ tumour,"0- All cancerous and beningn tumours not reported
+1- All cancerous and beningn tumours reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,autoimmune_dss,"0- Autoimmune diseases (Systemic lupus erythematosus etc) not reported
+1- Autoimmune diseases (Systemic lupus erythematosus etc) reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,hepB_chronic/ hepatitis,"0- Chronic Hepatitis B Infection not reported
+1- Chronic Hepatitis B Infection reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,parkinsons/ alzeheimers/ dementia,"0- Neurodegenerative conditions (Parkinson's, Alzheimers and Dementia) not reported
+1- Neurodegenerative conditions (Parkinson's, Alzheimers and Dementia) reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,cataract,"0- Cataract disease not reported
+1- Cataract disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,hydrocephalus,"0- Hydrocephalus not reported
+1- Hydrocephalus reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,osa,"0- Obstructive Sleep Apnoea not reported
+1- Obstructive Sleep Apnoea reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,sinusitis,"0- Sinusitis not reported
+1- Sinusitis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,blindness/ eye dss,"0- Visual impairments of varying causes not reported
+1- Visual impairments of varying causes reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,arrythmia,"0- Arrythmias not reported
+1- Arrythmias reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,oa,"0- Osteoarthiritis not reported
+1- Osteoarthiritis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,kidney_bladder_stones,"0- Kidney or Bladder stones not reported
+1- Kidney or Bladder stones reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,cp/domalaysian_syndrome/ other congenital syndromes,"0- Down Syndrome not reported
+1- Down Syndrome reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,congenital_heart_dss,"0- Congential Heart Disease not reported
+1- Congential Heart Disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,rheumatic_heart_disease,"0- Rheumatic Heart Disease not reported
+1- Rheumatic Heart Disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,gastritis,"0- Dyspepsia not reported
+1- Dyspepsia reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,schizo,"0- Schizophrenia not reported
+1- Schizophrenia reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,ra,"0- Rheumatoid arthritis not reported
+1- Rheumatoid arthritis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,chronic_liver-dss_liver_dss,"0- Chronic Liver disease not reported
+1- Chronic Liver disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,immunocompromised,"0- Immunocompromised not reported
+1- Immunocompromised reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,depression/ anxiety/ other mental disorders,"0- Depression not reported
+1- Depression reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,anemia,"0- Anemia of all causes not reported
+1- Anemia of all causes reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,hernia,"0- Hernia of all causes not reported
+1- Hernia of all causes reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,bronchiectasis/ lung fibrosis/ emphysema/pe/ other lung related disorders,"0- Other respiratory conditions (Bronchiectasis, Lung fibrosis, Emphysema, and Pulmonary embolism) not reported
+1- Other respiratory conditions (Bronchiectasis, Lung fibrosis, Emphysema, and Pulmonary embolism) reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,adrenal_insufficiency,"0- Adrenal insufficiency not reported
+1- Adrenal insufficiency reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,glaucoma,"0- Glaucoma not reported
+1- Glaucoma reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,hearing_impariment,"0- Hearing impairments of varying causes not reported
+1- Hearing impairments of varying causes reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,peripheral_vascular_dss,"0- Peripheral vascular disease not reported
+1- Peripheral vascular disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,valvular_heart_dss/ structural_heart_dss,"0- Valvular heart disease not reported
+1- Valvular heart disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,rvd,"0- Retroviral disease not reported
+1- Retroviral disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,neurogenic_bladder,"0- Neurogenic bladder not reported
+1- Neurogenic bladder reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,sle,"0- Systemic Lupus erythematosus not reported
+1- Systemic Lupus erythematosus reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,addison's dss,"0- Addisons disease not reported
+1- Addisons disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,osteoporosis,"0- Osteoporosis not reported
+1- Osteoporosis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,thallesemia/ blood dyscrasia/ blood disorder,"0- Blood dyscrasias and disorders (Thallasemia, Myelodysplastic syndromes etc) not reported
+1- Blood dyscrasias and disorders (Thallasemia, Myelodysplastic syndromes etc) reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,empyema,"0- Empyema not reported
+1- Empyema reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,parathroid_dss,"0- Parathyroid disease not reported
+1- Parathyroid disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,uterine_fibroid,"0- Uterine fibroid not reported
+1- Uterine fibroid reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,epilepsy,"0- Epilepsy not reported
+1- Epilepsy reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,aortic_aneurysm/ other_aneurysms,"0- Aortic aneurysm not reported
+1- Aortic aneurysm reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,dvt,"0- Deep vein thrombosis not reported
+1- Deep vein thrombosis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,neuropathy/ neurologic disorders,"0- Neuropathy not reported
+1- Neuropathy reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,stills_dss,"0- Still's disease not reported
+1- Still's disease reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,aldosternism_other endocrine disorders,"0- Aldosteronism not reported
+1- Aldosteronism reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,trauma/ surgical emergencies,"0- Trauma and Surgical emergencies not reported
+1- Trauma and Surgical emergencies reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,infection/ sepsis,"0- infection/ sepsis not reported
+1- infection/ sepsis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,ibd/crohns/uc/gi disorders,"0- IBD/crohns/UC/GI disorders not rreported
+1- IBD/crohns/UC/GI disorders not rreported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,pancreatitis,"0- Pancreatitis not reported
+1- Pancreatitis reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities
+Binary,dermatalogical condition,"0- Dermatalogical condition not reported
+1- Dermatalogical condition reported",0,"Director General, Ministry  of Health Malaysia, Daily Press Release",mortalities

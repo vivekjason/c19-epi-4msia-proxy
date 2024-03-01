@@ -1,0 +1,110 @@
+No.,Variable name,Types of variable,Variables in dataset,Variable definition,Missing observations,Source,Dataset
+COVID-19 transmission indicators in Malaysia,,,,,,,
+1,Date of reporting,date,date,Reporting date begins on 25 January 2020,0,"Ministry of Health, Malaysia GitHub",transmission
+2,Sequence of day,continuous,time,Sequence of numbers corresponding to the number of days since reporting began. 25 January 2020 is Day 1,0,"Ministry of Health, Malaysia GitHub",transmission
+3,State,categorical,state,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, xvi) Wilayah Perseketuan Labuan, and xvii) Malaysia",0,"Ministry of Health, Malaysia GitHub",transmission
+4,Daily new cases of COVID-19 being reported,continuous,cases_new,Aggregate daily cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+5,Daily new imported cases of COVID-19 being reported,continuous,cases_import,Aggregate daily import-linked cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+6,Daily new  recoveries of COVID-19 being reported,continuous,cases_recovered,Aggregate daily recoveries by location,0,"Ministry of Health, Malaysia GitHub",transmission
+7,Daily active cases of COVID-19 being reported,continuous,cases_active,Aggregate daily active cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+8,Daily new cluster-linked cases of COVID-19 being reported,continuous,cases_cluster,Aggregate daily new cluster-linked cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+9,Daily partially vaccinated new cases of COVID-19 being reported,continuous,cases_pvax,Aggregate daily partially-vaccinated new cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+10,Daily fully vaccinated new cases of COVID-19 being reported,continuous,cases_fvax,Aggregate daily fully-vaccinated new cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+11,Daily new cases of COVID-19 being reported amongst children,continuous,cases_child,Aggregate daily cases in children by location,0,"Ministry of Health, Malaysia GitHub",transmission
+12,Daily new cases of COVID-19 being reported amongst adolescents,continuous,cases_adolescent,Aggregate daily cases in adolescents by location,0,"Ministry of Health, Malaysia GitHub",transmission
+13,Daily new cases of COVID-19 being reported amongst adult,continuous,cases_adult,Aggregate daily cases in adult by location,0,"Ministry of Health, Malaysia GitHub",transmission
+14,Daily new cases of COVID-19 being reported amongst elderly,continuous,cases_elderly,Aggregate daily cases in elderly by location,0,"Ministry of Health, Malaysia GitHub",transmission
+15,Truncated daily new cases of COVID-19 being reported ,continuous,cases_truncate,Aggregate daily cases after being truncated for imported and institutionalised cases by location for Rt estimation,0,"Ministry of Health, Malaysia GitHub",transmission
+16,7-day moving average of cases,continuous,ma_7day_cases,7-day moving average of cases by location,0,"Ministry of Health, Malaysia GitHub",transmission
+17,Truncated 7-day moving average of cases,continuous,ma_7day_cases_truncate,7-day moving average of cases by location after being truncated for imported and institutionalised cases by location for Rt estimation,0,"Ministry of Health, Malaysia GitHub",transmission
+18,7-day rolling sum of daily new cases,continuous,rollcases_7d,Sum of all daily new-cases in last 7-days,0,"Ministry of Health, Malaysia GitHub",transmission
+19,Daily new  COVID-19 deaths  by day of reporting,continuous,deaths_new,Aggregate daily COVID-19 deaths by location by day of reporting,0,"Ministry of Health, Malaysia GitHub",transmission
+20,Daily new brought-in-dead COVID-19 deaths  by day of reporting,continuous,deaths_bid,Aggregate daily brought-in-dead COVID-19 deaths by location by day of reporting,0,"Ministry of Health, Malaysia GitHub",transmission
+21,Daily new  COVID-19 deaths  by day of death ,continuous,deaths_new_dod,Aggregate daily COVID-19 deaths by location by day of death,0,"Ministry of Health, Malaysia GitHub",transmission
+22,Daily new brought-in-dead COVID-19 deaths  by day of death,continuous,deaths_bid_dod,Aggregate daily brought-in-dead COVID-19 deaths by location by day of death,0,"Ministry of Health, Malaysia GitHub",transmission
+23,Daily partially vaccinated new deaths by day of death,continuous,deaths_pvax,Aggregate partially vaccinated COVID-19 deaths by day of death,0,"Ministry of Health, Malaysia GitHub",transmission
+24,Daily fully vaccinated new deaths by day of death,continuous,deaths_fvax,Aggregate fully vaccinated COVID-19 deaths by day of death,0,"Ministry of Health, Malaysia GitHub",transmission
+25,Median duration between death and reporting,continuous,deaths_tat,Aggregate daily median number of days between date of death and date of reporting,0,"Ministry of Health, Malaysia GitHub",transmission
+26,7-day moving average of deaths,continuous,ma_7day_deaths,7-day moving average of daily COVID-19 deaths by date of death by location,0,"Ministry of Health, Malaysia GitHub",transmission
+27,7-day rolling sum of daily new deaths,continuous,rolldeaths_7d,Sum of all daily COVID-19 deaths by date of death by location,0,"Ministry of Health, Malaysia GitHub",transmission
+28,Time-varying reproductive number,continuous,rt,Point estimate of the Rt based on the Cori et al methodology,0,"Ministry of Health, Malaysia GitHub",transmission
+29,Lower limit of 95% confidence interval time-varying reproductive number,continuous,lower,Lower limit of the 95% confidence interval of the Rt based on the Cori et al methodology,0,"Ministry of Health, Malaysia GitHub",transmission
+30,Upper limit of 95% confidence interval time-varying reproductive number,continuous,upper,Upper limit of the 95% confidence interval of the Rt based on the Cori et al methodology,0,"Ministry of Health, Malaysia GitHub",transmission
+31,Mid-year population,continuous,population_new,Mid-year population by location based on the Department of Statistics population projection 2020,0,"Ministry of Health, Malaysia GitHub",transmission
+32,7-day incidence rate,continuous,ir_7day,"7-day cumulative cases per 100,000 population",0,"Ministry of Health, Malaysia GitHub",transmission
+33,7-day mortality rate,continuous,mr_7day,"7-day cumulative deaths per 100,000 population",0,"Ministry of Health, Malaysia GitHub",transmission
+Cluster of COVID-19 cases in Malaysia,,,,,,,
+1,Date of reporting,date,date,Reporting for cases begins on 25 January 2020. Breakdown by cluster-type begins on 1 January 2021,0,"Ministry of Health, Malaysia GitHub",cluster
+2,Daily new cases of COVID-19 being reported,continuous,cases_new,Aggregate daily new cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+3,Daily new import cases of COVID-19 being reported,continuous,cases_import,Aggregate daily new import cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+4,Daily new import-linked cluster cases of COVID-19 being reported,continuous,cluster_import,Aggregate daily new import-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+5,Daily new religous-linked cluster cases of COVID-19 being reported,continuous,cluster_religious,Aggregate daily new religous-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+6,Daily new community-linked cluster cases of COVID-19 being reported,continuous,cluster_community,Aggregate daily new community-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+7,Daily new high-risk-linked cluster cases of COVID-19 being reported,continuous,cluster_highRisk,Aggregate daily new high-risk-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+8,Daily new education-linked cluster cases of COVID-19 being reported,continuous,cluster_education,Aggregate daily new education-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+9,Daily new detention-centre-linked cluster cases of COVID-19 being reported,continuous,cluster_detentionCentre,Aggregate daily new detention-cetre-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+10,Daily new workplace-linked cluster cases of COVID-19 being reported,continuous,cluster_workplace,Aggregate daily new workplace-linked cluster cases by location,342,"Ministry of Health, Malaysia GitHub",cluster
+Mobility in Malaysia,,,,,,,
+1,Date of measurement,date,date,Reporting begun on 15 February 2020,0,Google Mobility reports,mobility
+2,State,categorical,state,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, xvi) Wilayah Perseketuan Labuan, and xvii) Malaysia",0,Google Mobility reports,mobility
+3,Retail and recreation (% change from baseline),continuous,grocery,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+4,Grocery and Pharmacy (% change from baseline),continuous,parks,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+5,Parks (% change from baseline),continuous,recreation,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+6,Transit station (% change from baseline),continuous,transit,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+7,Workplace (% change from baseline),continuous,work,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+8,Residence (% change from baseline),continuous,residence,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+9,Average (% change from baseline),continuous,average,"A measure of change from baseline (0), with increase indicated by a positive change up to 100% and a decrease indicated by a negative change up to 100%.  Average takes  the average percentage change of retail and recreation, grocery and pharamacy and parks. Reporting delay of 4-days leading to 4 days of missing data ",0,Google Mobility reports,mobility
+COVID-19 testing in Malaysia,,,,,,,
+1,Date of reporting,date,date,Reporting started on 25 January 2020,0,"Ministry of Health, Malaysia GitHub",testing
+2,State,categorical,state,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, xvi) Wilayah Perseketuan Labuan, and xvii) Malaysia",0,"Ministry of Health, Malaysia GitHub",testing
+3,Daily new rapid-antigen (RTK) type tests,continuous,rtk.ag,Aggregate daily number of RTK tests carried out by location,0,"Ministry of Health, Malaysia GitHub",testing
+4,Daily new polymerase chain reactions (PCR) tests,continuous,pcr,Aggregate daily number of PCR tests carried out by location,0,"Ministry of Health, Malaysia GitHub",testing
+5,Daily new tests,continuous,tests_new,Aggregate daily number of tests carried out by location,0,"Ministry of Health, Malaysia GitHub",testing
+6,Daily test positivity rate,continuous,positivity_rate,Daily number of postive tests over all tests carried out by location,0,"Ministry of Health, Malaysia GitHub",testing
+7,Daily testing rate,continuous,testing_rate,"Daily number of tests per 1,000 population",0,"Ministry of Health, Malaysia GitHub",testing
+COVID-19-associated healthcare capacity in Malaysia,,,,,,,
+1,Date of reporting,date,date,Reporting started on 23 March 2020,0,"Ministry of Health, Malaysia GitHub",capacity
+2,State,categorical,state,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, xvi) Wilayah Perseketuan Labuan, and xvii) Malaysia",0,"Ministry of Health, Malaysia GitHub",capacity
+3,Bed-occupancy rate,continuous,bor,Total number of COVID-19 associated general hospital beds utilised over all hospital beds avaialble,0,"Ministry of Health, Malaysia GitHub",capacity
+4,COVID-19 patients in Hospital,continuous,hosp_covid,total number of individuals with COVID-19 in hospitals,0,"Ministry of Health, Malaysia GitHub",capacity
+5,Persons-under-investigation (PUI) patients in Hospital,continuous,hosp_pui,total number of individuals classified as PUI in hospitals,0,"Ministry of Health, Malaysia GitHub",capacity
+6,Non-COVID-19 patients in Hospital,continuous,hosp_noncovid,total number of individuals with non-COVID-19 related illneses in hospitals,0,"Ministry of Health, Malaysia GitHub",capacity
+7,Total hospital beds,continuous,hosp_beds,total hospital beds (with related medical infrastructure),0,"Ministry of Health, Malaysia GitHub",capacity
+8,Intensive care unit (ICU) utilisation rate,continuous,ior,Total number of ICU beds utilised over all ICU beds avaialble,0,"Ministry of Health, Malaysia GitHub",capacity
+9,Persons-under-investigation (PUI) patients in ICU,continuous,icu_pui,total number of PUI under intensive care,0,"Ministry of Health, Malaysia GitHub",capacity
+10,COVID-19 patients in ICU,continuous,icu_covid,total number of individuals with COVID-19 under intensive care,0,"Ministry of Health, Malaysia GitHub",capacity
+11,Non-COVID-19 patients in ICU,continuous,icu_noncovid,total number of individuals with non-COVID-19 illnesses  under intensive care,0,"Ministry of Health, Malaysia GitHub",capacity
+12,Total ICU beds,continuous,icu_beds,total gazetted ICU beds,0,"Ministry of Health, Malaysia GitHub",capacity
+13,Ventilator utilisation rate,continuous,vor,Total number of ventilators utilised over all ventilators avaiable,0,"Ministry of Health, Malaysia GitHub",capacity
+14,Ventilated COVID-19 patients in ICU,continuous,vent_covid,total number of ventilated individuals with COVID-19 ,0,"Ministry of Health, Malaysia GitHub",capacity
+15,Ventilated ersons-under-investigation (PUI) patients,continuous,vent_pui,total number of ventilated PUI ,0,"Ministry of Health, Malaysia GitHub",capacity
+16,Ventilated non-COVID-19 patients in ICU,continuous,vent_noncovid,total number of ventilated individuals with non-COVID-19 illnesses  ,0,"Ministry of Health, Malaysia GitHub",capacity
+17,Total ventilators,continuous,vent_beds,total available ventilators (including portable ventilators),0,"Ministry of Health, Malaysia GitHub",capacity
+18,Low-risk center occupacy rate,continuous,por,Total number of low-risk center beds utilised over all low-risk center beds avaialble,0,"Ministry of Health, Malaysia GitHub",capacity
+19,COVID-19 patients in low-risk center,continuous,pkrc_covid,total number of individuals with COVID-19 in low-risk center,0,"Ministry of Health, Malaysia GitHub",capacity
+20,Persons-under-investigation (PUI) patients in low-risk center,continuous,pkrc_pui,total number of individuals classified as PUI in low-risk center,0,"Ministry of Health, Malaysia GitHub",capacity
+21,Non-COVID-19 patients in low-risk center,continuous,pkrc_noncovid,total number of individuals with non-COVID-19 related illneses in low-risk center,0,"Ministry of Health, Malaysia GitHub",capacity
+22,Total low-risk center beds,continuous,pkrc_beds,total PKRC beds (with related medical infrastructure),0,"Ministry of Health, Malaysia GitHub",capacity
+COVID-19 vaccinations in Malaysia,,,,,,,
+1,Date of reporting,date,date,Reporting started on 24 February 2021,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+2,State,categorical,state,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, xvi) Wilayah Perseketuan Labuan, and xvii) Malaysia",0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+3,Cumulative partial vaccinations,continuous,cumul_partial,Daily updated cumulative number of partial (first dose) doses administered by locaiton,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+4,Cumulative full vaccinations,continuous,cumul_full,Daily updated cumulative number of fully (second dose) doses administered by locaiton,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+5,Cumulative vaccinations,,total,Daily updated cumulative number of doses administered by locaiton,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+6,Mid-year population,,pop,Mid-year population by location based on the Department of Statistics population projection 2020,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+7,Total percentage population partially vaccinated,,perc_vax1,Percentage of total population having been partially vaccinated,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+8,Total percentage population fully vaccinated,,perc_vax2,Percentage of total population having been fully vaccinated,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+9,Total percentage population registered,,perc_reg,Percentage of total population having registered for vaccine,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+10,Total percentage population ,,perc_pop,Total population percentage (assumed to be 100% of mid-year population),0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+11,Percentage population partially vaccinated,,diff_vax2,Percentage of total population having been partially vaccinated,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+12,Percentage population fully vaccinated,,diff_vax1,Percentage of total population having been fully vaccinated (minus those partially vaccinated),0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+13,Percentage population registered,,diff_reg,Percentage of total population having been fully vaccinated (minus those partially and fully vaccinated),0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+14,Percentage population unregistered,,diff_pop,Percentage of unregistered population,0,"Common Integration Test Framework-Malaysia, GitHub",vaccination
+COVID-19 variants detected in Malaysia & globally,,,,,,,
+1,Country,categorical,Country,All reporting countries ,,,
+2,Date of reporting,date,Week prior to,Reporting begins earliest in January 2020,0,GISAID,voc_ratio
+3,Type of variable,categorical,Type,"Classified either as Clade, Variant, Lineage, and AA-Subst",0,GISAID,voc_ratio
+4,Type of variant,categorical,Value,"Describe variant based on the type category. Example lineage type classifies using PANGOLIN linearge; i) B.1.1.7, ii) B.1.351, iii) B.1.617.2, iv) B.1.525, v) B.1.617.1, and vi) P.3 Variant etc and variant classifies using WHOs variant of concern list; i) Alpha, ii) Beta, iii) Delta, iv) Eta, v) Kappa, and vi) P.3. ",0,GISAID,voc_ratio
+5,Count of variant detected,continuous,Submission Count,"Absolute count by selected sub-stratum of Clade, Variant, Lineage, and AA-Subst by week",,,
+6,Percentage of variant detected,continuous,% per Country and Week,"Percentage selected sub-stratum of Clade, Variant, Lineage, and AA-Subst by week",0,GISAID,voc
+7,Total count of all variant detected in week ,continuous,Total per Country and Week,"Total count by selected stratum of Clade, Variant, Lineage, and AA-Subst by week",0,GISAID,voc

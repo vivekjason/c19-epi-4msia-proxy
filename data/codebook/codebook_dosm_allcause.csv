@@ -1,0 +1,17 @@
+No.,Variable name,Types of variable,Variable definition,Source
+1,adjust ,weights,Weights to adjust for undercounting of all-cause mortalities in Sabah,Department of Statistics Malaysia
+2,peninsula,categorical,Categorical describing death either in Peninsular Malaysia or Sabah/ Sarawak,Department of Statistics Malaysia
+3,umur,continuous,Age at death,Department of Statistics Malaysia
+4,jantina,categorical,"Sex; i) Male (1), ii) Female (ii)",Department of Statistics Malaysia
+5,etnik,categorical,"Ethnicity; i) Bumiputera Malay, ii) Bumiputera non-Malay, iii) Chinese, iv) Indian, v) Others",Department of Statistics Malaysia
+6,kewarganegaraan,categorical,"Nationality; Malaysian (1), non-Malaysian (0)",Department of Statistics Malaysia
+7,hari_mati,date,Day of death (numeric value ranging from 1-31),Department of Statistics Malaysia
+8,bulan_mati,date,Month of death (numeric value ranging from 1-12),Department of Statistics Malaysia
+9,tahun_mati,date,Year of death (numeric value ranging from 2016-2021),Department of Statistics Malaysia
+10,negeri,categorical,"Categorical: i) Perlis, ii) Kedah, iii) Pulau Pinang, iv) Perak, v) Selangor, vi) Negeri Sembilan, vii) Melaka, viii) Johor, ix) Pahang, x) Terengganu, xi) Kelantan, xii) Sabah, xiii) Sarawak, xiv) Wilayah Perseketuan Kuala Lumpur, xv)  Wilayah Perseketuan Putrajaya, xvi) Wilayah Perseketuan Labuan, and xvii) Malaysia",Department of Statistics Malaysia
+11,daerah,categorical,Categorical with >120 district categories,Department of Statistics Malaysia
+12,pengesah,categorical,"Death certified by: i) Medical practitioner, ii) Police etc.",Department of Statistics Malaysia
+13,sebab_kematian,text,Cause of death in free text,Department of Statistics Malaysia
+14,kod_sebab_mati,categorical,ICD-10 code for cause of death,Department of Statistics Malaysia
+15,age_gp,categorical,"Age-grp; defined as i)<5, ii)6-18, iii) 19-59, iv)>60",Department of Statistics Malaysia
+16,RTA,categorical,Categorical; if death from RTA (1) or not-RTA (0),Department of Statistics Malaysia

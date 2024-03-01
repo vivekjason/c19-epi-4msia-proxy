@@ -1,0 +1,633 @@
+---
+title: 'COVID-19 Epidemiology for Malaysia'
+author: ''
+date: ''
+output: null
+runtime: shiny
+theme: united
+resource_files:
+- plots/
+- plots/epid_report_tbl.rds
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = T,warnings = FALSE, message = FALSE)
+```
+
+```{r, echo=FALSE, include=FALSE}
+library(shiny)
+library(plotly) 
+library(scales)
+library(tidyverse)
+library(reactable)
+library(rsconnect)
+library(packrat)
+library(htmltools)
+```
+
+```{r LoadPlots, echo=FALSE, include=FALSE}
+## Iterate through all the files under the Plots directory
+for (file in list.files("plots/")){
+  # assign each file to a variable with the same name as the file
+  # but without the file extension. Equivalent to:
+  # filename = load(filename.filextension)
+  assign(x = strsplit(file, '\\.')[[1]][1],
+         value = readRDS(paste0("plots/",file)))
+}
+```
+
+#  {.tabset .tabset-pills .tabcontent}
+## Situational report
+```{r, echo=FALSE}
+#load data
+epid_report <- read.csv("./data/epid_report.csv")
+
+ct_ir <- ifelse(epid_report$mean_ir[epid_report$state=="Malaysia"]>150, "4",
+            ifelse(epid_report$mean_ir[epid_report$state=="Malaysia"]>49, "3",
+                   ifelse(epid_report$mean_ir[epid_report$state=="Malaysia"]>19, "2", "1")))
+ct_mr <- ifelse(epid_report$mean_mr[epid_report$state=="Malaysia"]>5, "4",
+            ifelse(epid_report$mean_mr[epid_report$state=="Malaysia"]>1.99, "3",
+                   ifelse(epid_report$mean_mr[epid_report$state=="Malaysia"]>0.99, "2", "1")))
+```
+ <span style="font-family: Calibri, serif; font-size:12pt">A 7-day incidence rate of </span><span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold;">`r round(epid_report$mean_ir[epid_report$state=="Malaysia"],1)`</span>  <span style="font-family: Calibri, serif; font-size:12pt">confirmed COVID-19 cases per 100,000 population were reported at the National level over the last 7-days </span> <span style="font-family: Calibri, serif; color: blue; font-size:12pt"> (`r format(Sys.Date()-8, '%A, %d %B, %Y')`-`r format(Sys.Date()-1, '%A, %d %B %Y')`)</span> <span tyle="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold"> `r ifelse(epid_report$perc_change_ir[epid_report$state=="Malaysia"]>0, "-an increase", "-a decrease")`</span> <span style="font-family: Calibri, serif; font-size:12pt"> of </span> <span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold"> `r round(epid_report$perc_change_ir[epid_report$state=="Malaysia"],1)`%</span>  <span style="font-family: Calibri, serif; font-size:12pt"> from the previous week. This corresponds to community transmission level `r ct_ir`.<span> <span style="font-family: Calibri, serif; font-size:12pt">A 7-day mortality rate of </span><span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold;">`r round(epid_report$mean_mr[epid_report$state=="Malaysia"],1)`</span>  <span style="font-family: Calibri, serif; font-size:12pt">confirmed COVID-19 mortalities per 100,000 population were reported at the National level over the last 7-days </span> <span style="font-family: Calibri, serif; color: blue; font-size:12pt"> (`r format(Sys.Date()-8, '%A, %d %B, %Y')`-`r format(Sys.Date()-1, '%A, %d %B %Y')`)</span> <span tyle="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold"> `r ifelse(epid_report$perc_change_mr[epid_report$state=="Malaysia"]>0, "an increase", "a decrease")`</span> <span style="font-family: Calibri, serif; font-size:12pt"> of </span> <span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold"> `r round(epid_report$perc_change_mr[epid_report$state=="Malaysia"],1)`%</span>  <span style="font-family: Calibri, serif; font-size:12pt"> from the previous week. This corresponds to community transmission level `r ct_mr`.<span>
+
+<span style="font-family: Calibri, serif; font-size:12pt">A bed occupancy rate of </span><span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold;">`r round(epid_report$mean_bor[epid_report$state=="Malaysia"],1)`%</span> <span style="font-family: Calibri, serif; font-size:12pt">was reported over the last 7-days</span> <span style="font-family: Calibri, serif; color: blue; font-size:12pt"> (`r format(Sys.Date()-8, '%A, %d %B, %Y')`-`r format(Sys.Date()-1, '%A, %d %B %Y')`)</span> <span style="font-family: Calibri, serif; font-size:12pt">This corresponds to </span><span style="font-family: Calibri, serif; font-size:12pt"> `r ifelse(epid_report$perc_change_bor[epid_report$state=="Malaysia"]>0, "an increase", "a decrease")`</span> <span style="font-family: Calibri, serif; font-size:12pt"> of </span> <span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold"> `r round(epid_report$perc_change_bor[epid_report$state=="Malaysia"],1)`%</span><span style="font-family: Calibri, serif; font-size:12pt"> from the previous week.</span>  <span style="font-family: Calibri, serif; font-size:12pt">An ICU occupancy rate of </span> <span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold">`r round(epid_report$mean_ior[epid_report$state=="Malaysia"],1)`% </span> <span style="font-family: Calibri, serif; font-size:12pt"> was reported over the same period.</span>  <span style="font-family: Calibri, serif; font-size:12pt">This corresponds to </span><span style="font-family: Calibri, serif; font-size:12pt; "> `r ifelse(epid_report$perc_change_ior[epid_report$state=="Malaysia"]>0, "an increase", "a decrease")`</span> <span style="font-family: Calibri, serif; font-size:12pt"> of </span> <span style="font-family: Calibri, serif; color: red; font-size:12pt; font-weight: bold"> `r round(epid_report$perc_change_ior[epid_report$state=="Malaysia"],1)`%</span><span style="font-family: Calibri, serif; font-size:12pt"> from the previous week.</span>
+
+Data was last updated on `r file.info("plots")$mtime`
+  
+```{r, echo=FALSE}
+renderReactable(epid_report_tbl)
+```
+
+## Transmission 
+### Epidemic curves of cases
+```{r class.source="fold-show", echo=FALSE}
+line_type = selectInput(inputId = "line_choice_type",
+                       label = "Type",
+                       choices = c("New cases", "Active cases", "Hospitalised cases", "ICU cases"),
+                       selected = "New cases")
+
+line_geo = selectInput(inputId = "line_choice_geography",
+                        label = "State",
+                        choices = c("Malaysia", "Perlis", "Kedah", "Pulau Pinang", "Perak", "Selangor",
+                                    "W.P. Kuala Lumpur", "W.P. Putrajaya", "Negeri Sembilan", "Melaka",
+                                    "Johor", "Kelantan", "Terengganu", "Pahang", "Sabah", "Sarawak", "W.P. Labuan"),
+                        selected = "Malaysia")
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_type,
+  line_geo
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  type = ifelse(input$line_choice_type == 'New cases', 'daily',
+                ifelse(input$line_choice_type == 'Active cases',"active",
+                       ifelse(input$line_choice_type == 'Hospitalised cases', "hospital", "icu")))
+  geo = ifelse(input$line_choice_geography == 'Malaysia', "Malaysia",
+               ifelse(input$line_choice_geography == 'Perlis', "Perlis",
+                      ifelse(input$line_choice_geography == 'Kedah', "Kedah",
+                             ifelse(input$line_choice_geography == 'Pulau Pinang', "Penang",
+                                    ifelse(input$line_choice_geography == 'Perak', "Perak",
+                                           ifelse(input$line_choice_geography == 'Selangor', "Selangor",
+                                                  ifelse(input$line_choice_geography == 'W.P. Kuala Lumpur', "KL",
+                                                         ifelse(input$line_choice_geography == 'W.P. Putrajaya', "Putrajaya",
+                                                                ifelse(input$line_choice_geography == 'Negeri Sembilan', "NS",
+                                                                       ifelse(input$line_choice_geography == 'Melaka', "Melaka",
+                                                                              ifelse(input$line_choice_geography == 'Johor', "Johor",
+                                                                                     ifelse(input$line_choice_geography == 'Kelantan', "Kelantan",
+                                                                                            ifelse(input$line_choice_geography == 'Terengganu', "Terengganu",
+                                                                                                   ifelse(input$line_choice_geography == 'Pahang', "Pahang",
+                                                                                                          ifelse(input$line_choice_geography == 'Sabah', "Sabah",
+                                                                                                                 ifelse(input$line_choice_geography == 'Sarawak', "Sarawak", "Labuan"))))))))))))))))
+  
+   # build string
+  chosen_plot = paste0('epid_curve_', type, '_',geo)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+### Incidence rates
+```{r class.source="fold-show", echo=FALSE}
+line_geo2 = selectInput(inputId = "line_choice_geography2",
+                       label = "Geography",
+                       choices = c("State", "Region"),
+                       selected = "State")
+
+line_log10 = checkboxInput('line_log10', 'log10 scale', value = FALSE)
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_geo2,
+  line_log10
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  geo = ifelse(input$line_choice_geography2 == 'State', 'state', 'region')
+  log10 = ifelse(input$line_log10, 'log10', '')
+  # build string
+  chosen_plot = paste0('ir_curve_', geo, log10)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+### Instantaenous reproductive number
+```{r class.source="fold-show", echo=FALSE}
+line_geo3 = selectInput(inputId = "line_choice_geography3",
+                        label = "State",
+                        choices = c("Malaysia", "Perlis", "Kedah", "Pulau Pinang", "Perak", "Selangor",
+                                    "W.P. Kuala Lumpur", "W.P. Putrajaya", "Negeri Sembilan", "Melaka",
+                                    "Johor", "Kelantan", "Terengganu", "Pahang", "Sabah", "Sarawak", "W.P. Labuan"),
+                        selected = "Malaysia")
+```
+
+
+```{r, echo=FALSE}
+inputPanel(line_geo3
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  geo = ifelse(input$line_choice_geography3 == 'Malaysia', "Malaysia",
+               ifelse(input$line_choice_geography3 == 'Perlis', "Perlis",
+                      ifelse(input$line_choice_geography3 == 'Kedah', "Kedah",
+                             ifelse(input$line_choice_geography3 == 'Pulau Pinang', "Penang",
+                                    ifelse(input$line_choice_geography3 == 'Perak', "Perak",
+                                           ifelse(input$line_choice_geography3 == 'Selangor', "Selangor",
+                                                  ifelse(input$line_choice_geography3 == 'W.P. Kuala Lumpur', "KL",
+                                                         ifelse(input$line_choice_geography3 == 'W.P. Putrajaya', "Putrajaya",
+                                                                ifelse(input$line_choice_geography3 == 'Negeri Sembilan', "NS",
+                                                                       ifelse(input$line_choice_geography3 == 'Melaka', "Melaka",
+                                                                              ifelse(input$line_choice_geography3 == 'Johor', "Johor",
+                                                                                     ifelse(input$line_choice_geography3 == 'Kelantan', "Kelantan",
+                                                                                            ifelse(input$line_choice_geography3 == 'Terengganu', "Terengganu",
+                                                                                                   ifelse(input$line_choice_geography3 == 'Pahang', "Pahang",
+                                                                                                          ifelse(input$line_choice_geography3 == 'Sabah', "Sabah",
+                                                                                                                 ifelse(input$line_choice_geography3 == 'Sarawak', "Sarawak", "Labuan"))))))))))))))))
+  
+   # build string
+  chosen_plot = paste0("rt_curve_", geo)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+### Breakdown of cases
+```{r class.source="fold-show", echo=FALSE}
+line_type2 = selectInput(inputId = "line_choice_type2",
+                       label = "Type",
+                       choices = c("Death status", "Vaccination status", "Hospitalisation status", "Age category", "Infection source"),
+                       selected = "Death status")
+
+
+line_geo4 = selectInput(inputId = "line_choice_geography4",
+                       label = "State",
+                        choices = c("Malaysia", "Perlis", "Kedah", "Pulau Pinang", "Perak", "Selangor",
+                                    "W.P. Kuala Lumpur", "W.P. Putrajaya", "Negeri Sembilan", "Melaka",
+                                    "Johor", "Kelantan", "Terengganu", "Pahang", "Sabah", "Sarawak", "W.P. Labuan"),
+                        selected = "Malaysia")
+
+line_perc = checkboxInput('line_perc', 'Percentage (%)', value = FALSE)
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_type2,
+  line_geo4,
+  line_perc
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  type = ifelse(input$line_choice_type2 == 'Death status', 'deaths',
+                ifelse(input$line_choice_type2 == 'Vaccination status',"vax",
+                       ifelse(input$line_choice_type2 == 'Hospitalisation status', "hosp",
+                              ifelse(input$line_choice_type2 == 'Age category', "age", "import"))))
+  geo = ifelse(input$line_choice_geography4 == 'Malaysia', "Malaysia",
+               ifelse(input$line_choice_geography4 == 'Perlis', "Perlis",
+                      ifelse(input$line_choice_geography4 == 'Kedah', "Kedah",
+                             ifelse(input$line_choice_geography4 == 'Pulau Pinang', "Penang",
+                                    ifelse(input$line_choice_geography4 == 'Perak', "Perak",
+                                           ifelse(input$line_choice_geography4 == 'Selangor', "Selangor",
+                                                  ifelse(input$line_choice_geography4 == 'W.P. Kuala Lumpur', "KL",
+                                                         ifelse(input$line_choice_geography4 == 'W.P. Putrajaya', "Putrajaya",
+                                                                ifelse(input$line_choice_geography4 == 'Negeri Sembilan', "NS",
+                                                                       ifelse(input$line_choice_geography4 == 'Melaka', "Melaka",
+                                                                              ifelse(input$line_choice_geography4 == 'Johor', "Johor",
+                                                                                     ifelse(input$line_choice_geography4 == 'Kelantan', "Kelantan",
+                                                                                            ifelse(input$line_choice_geography4 == 'Terengganu', "Terengganu",
+                                                                                                   ifelse(input$line_choice_geography4 == 'Pahang', "Pahang",
+                                                                                                          ifelse(input$line_choice_geography4 == 'Sabah', "Sabah",
+                                                                                                                 ifelse(input$line_choice_geography4 == 'Sarawak', "Sarawak", "Labuan"))))))))))))))))
+  
+  perc = ifelse(input$line_perc, 'perc', 'daily')
+  
+   # build string
+  chosen_plot = paste0('epid_curve_breakdown_', type, '_', geo, '_', perc)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+## Mortalities
+### Epidemic curves of deaths
+```{r class.source="fold-show", echo=FALSE}
+line_type3 = selectInput(inputId = "line_choice_type3",
+                       label = "Type",
+                       choices = c("New deaths", "Brought-in-dead deaths"),
+                       selected = "New deaths")
+
+line_geo5 = selectInput(inputId = "line_choice_geography5",
+                        label = "State",
+                        choices = c("Malaysia", "Perlis", "Kedah", "Pulau Pinang", "Perak", "Selangor",
+                                    "W.P. Kuala Lumpur", "W.P. Putrajaya", "Negeri Sembilan", "Melaka",
+                                    "Johor", "Kelantan", "Terengganu", "Pahang", "Sabah", "Sarawak", "W.P. Labuan"),
+                        selected = "Malaysia")
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_type3,
+  line_geo5
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  type = ifelse(input$line_choice_type3 == 'New deaths', 'daily', "bid")
+  geo = ifelse(input$line_choice_geography5 == 'Malaysia', "Malaysia",
+               ifelse(input$line_choice_geography5 == 'Perlis', "Perlis",
+                      ifelse(input$line_choice_geography5 == 'Kedah', "Kedah",
+                             ifelse(input$line_choice_geography5 == 'Pulau Pinang', "Penang",
+                                    ifelse(input$line_choice_geography5 == 'Perak', "Perak",
+                                           ifelse(input$line_choice_geography5 == 'Selangor', "Selangor",
+                                                  ifelse(input$line_choice_geography5 == 'W.P. Kuala Lumpur', "KL",
+                                                         ifelse(input$line_choice_geography5 == 'W.P. Putrajaya', "Putrajaya",
+                                                                ifelse(input$line_choice_geography5 == 'Negeri Sembilan', "NS",
+                                                                       ifelse(input$line_choice_geography5 == 'Melaka', "Melaka",
+                                                                              ifelse(input$line_choice_geography5 == 'Johor', "Johor",
+                                                                                     ifelse(input$line_choice_geography5 == 'Kelantan', "Kelantan",
+                                                                                            ifelse(input$line_choice_geography5 == 'Terengganu', "Terengganu",
+                                                                                                   ifelse(input$line_choice_geography5 == 'Pahang', "Pahang",
+                                                                                                          ifelse(input$line_choice_geography5 == 'Sabah', "Sabah",
+                                                                                                                 ifelse(input$line_choice_geography5 == 'Sarawak', "Sarawak", "Labuan"))))))))))))))))
+  
+   # build string
+  chosen_plot = paste0('death_curve_', type, '_',geo)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+### Mortality rate
+```{r class.source="fold-show", echo=FALSE}
+line_geo6 = selectInput(inputId = "line_choice_geography6",
+                       label = "Geography",
+                       choices = c("State", "Region"),
+                       selected = "State")
+
+line_log10_2 = checkboxInput('line_log10_2', 'log10 scale', value = FALSE)
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_geo6,
+  line_log10_2
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  geo = ifelse(input$line_choice_geography6 == 'State', 'state', 'region')
+  log10 = ifelse(input$line_log10_2, 'log10', '')
+  # build string
+  chosen_plot = paste0('mr_curve_', geo, log10)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+### Breakdown of deaths
+```{r class.source="fold-show", echo=FALSE}
+line_type4 = selectInput(inputId = "line_choice_type4",
+                       label = "Type",
+                       choices = c("Brought-in-dead status", "Vaccination status"),
+                       selected = "Brought-in-dead status")
+
+
+line_geo7 = selectInput(inputId = "line_choice_geography7",
+                       label = "State",
+                        choices = c("Malaysia", "Perlis", "Kedah", "Pulau Pinang", "Perak", "Selangor",
+                                    "W.P. Kuala Lumpur", "W.P. Putrajaya", "Negeri Sembilan", "Melaka",
+                                    "Johor", "Kelantan", "Terengganu", "Pahang", "Sabah", "Sarawak", "W.P. Labuan"),
+                        selected = "Malaysia")
+
+line_perc2 = checkboxInput('line_perc2', 'Percentage (%)', value = FALSE)
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_type4,
+  line_geo7,
+  line_perc2
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  type = ifelse(input$line_choice_type4 == 'Brought-in-dead status', 'bid', "vax")
+  geo = ifelse(input$line_choice_geography7 == 'Malaysia', "Malaysia",
+               ifelse(input$line_choice_geography7 == 'Perlis', "Perlis",
+                      ifelse(input$line_choice_geography7 == 'Kedah', "Kedah",
+                             ifelse(input$line_choice_geography7 == 'Pulau Pinang', "Penang",
+                                    ifelse(input$line_choice_geography7 == 'Perak', "Perak",
+                                           ifelse(input$line_choice_geography7 == 'Selangor', "Selangor",
+                                                  ifelse(input$line_choice_geography7 == 'W.P. Kuala Lumpur', "KL",
+                                                         ifelse(input$line_choice_geography7 == 'W.P. Putrajaya', "Putrajaya",
+                                                                ifelse(input$line_choice_geography7 == 'Negeri Sembilan', "NS",
+                                                                       ifelse(input$line_choice_geography7 == 'Melaka', "Melaka",
+                                                                              ifelse(input$line_choice_geography7 == 'Johor', "Johor",
+                                                                                     ifelse(input$line_choice_geography7 == 'Kelantan', "Kelantan",
+                                                                                            ifelse(input$line_choice_geography7 == 'Terengganu', "Terengganu",
+                                                                                                   ifelse(input$line_choice_geography7 == 'Pahang', "Pahang",
+                                                                                                          ifelse(input$line_choice_geography7 == 'Sabah', "Sabah",
+                                                                                                                 ifelse(input$line_choice_geography7 == 'Sarawak', "Sarawak", "Labuan"))))))))))))))))
+  
+  perc = ifelse(input$line_perc2, 'perc', 'daily')
+  
+   # build string
+  chosen_plot = paste0('death_curve_breakdown_', type, '_', geo, '_', perc)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+## Healthcare capacity
+### Latest healthcare capacity statistics
+```{r, echo=FALSE}
+renderReactable(healthcare_tbl)
+```
+
+### Time trends of healthcare capacity
+```{r class.source="fold-show", echo=FALSE}
+line_type9 = selectInput(inputId = "line_choice_type9",
+                            label = "Capacity",
+                            choices = c("General hospital beds", 
+                                        "ICU beds", 
+                                        "Beds with ventilator"),
+                            selected = "General hospital beds")
+
+line_geo10 = selectInput(inputId = "line_choice_geography10",
+                       label = "State",
+                        choices = c("Malaysia", "Perlis", "Kedah", "Pulau Pinang", "Perak", "Selangor",
+                                    "W.P. Kuala Lumpur", "W.P. Putrajaya", "Negeri Sembilan", "Melaka",
+                                    "Johor", "Kelantan", "Terengganu", "Pahang", "Sabah", "Sarawak", "W.P. Labuan"),
+                        selected = "Malaysia")
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  line_type9,
+  line_geo10
+)
+```
+
+
+```{r, echo=FALSE}
+renderPlotly({
+  type = ifelse(input$line_choice_type9 == 'General hospital beds', 'bor',
+                ifelse(input$line_choice_type9 == 'ICU beds', 'ior', "vor"))
+  
+  geo = ifelse(input$line_choice_geography10 == 'Malaysia', "Malaysia",
+               ifelse(input$line_choice_geography10 == 'Perlis', "Perlis",
+                      ifelse(input$line_choice_geography10 == 'Kedah', "Kedah",
+                             ifelse(input$line_choice_geography10 == 'Pulau Pinang', "Penang",
+                                    ifelse(input$line_choice_geography10 == 'Perak', "Perak",
+                                           ifelse(input$line_choice_geography10 == 'Selangor', "Selangor",
+                                                  ifelse(input$line_choice_geography10 == 'W.P. Kuala Lumpur', "KL",
+                                                         ifelse(input$line_choice_geography10 == 'W.P. Putrajaya', "Putrajaya",
+                                                                ifelse(input$line_choice_geography10 == 'Negeri Sembilan', "NS",
+                                                                       ifelse(input$line_choice_geography10 == 'Melaka', "Melaka",
+                                                                              ifelse(input$line_choice_geography10 == 'Johor', "Johor",
+                                                                                     ifelse(input$line_choice_geography10 == 'Kelantan', "Kelantan",
+                                                                                            ifelse(input$line_choice_geography10 == 'Terengganu', "Terengganu",
+                                                                                                   ifelse(input$line_choice_geography10 == 'Pahang', "Pahang",
+                                                                                                          ifelse(input$line_choice_geography10 == 'Sabah', "Sabah",
+                                                                                                                 ifelse(input$line_choice_geography10 == 'Sarawak', "Sarawak", "Labuan"))))))))))))))))
+
+   # build string
+  chosen_plot = paste0('healthcare_curve_', geo, '_', type)
+  # parse and evaluate content of the string
+  eval(parse(text = chosen_plot)) 
+}
+)
+```
+
+
+## Documentation
+**COVID-19 Epidemiology for Malaysia**
+
+*Department of Social and Preventive Medicine, Faculty of Medicine, University Malaya*
+*Sector for Biostatistic & Data Repository, National Institutes of Health*
+
+<br />
+
+***Introduction***
+
+The COVID-19 pandemic has propagated the globe over with uneering ease. It has been no different in Malaysia. This dashboard aims to track and leverage on important parameters of disease propagation and control across the country as a means of suplementing the decision-making process within the country. It presents important parameters over the course of the pandemic.
+
+<br />
+
+***Documentation***
+
+Data sources, extraction and methods utilised in the development of the dashboard are available in our [documentation page](https://spm.um.edu.my/covid19-epid-live-documentation/)
+
+<br />
+
+***Feedback***
+
+We believe in continuous improvement and would as such love to hear from you on ways we can improve- be it in the usability of the dashboard or the problems with the content. Additionally if you wish to request for our data or source code please do also drop us a line. You can reach out to us using the attached [Feedback form](https://spm.um.edu.my/covid19-epid-live-feedback/) 
+
+```{r ref.label="table", eval=FALSE}
+```
+
+```{r, echo=FALSE}
+tags$link(href = "https://fonts.googleapis.com/css?family=Karla:400,700|Fira+Mono&display=fallback", rel = "stylesheet")
+```
+
+```{css, echo=FALSE}
+.standings {
+  font-family: Karla, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+}
+.title {
+  margin: 12px 0;
+  font-size: 12px;
+}
+.title h2 {
+  font-size: 11px;
+  font-weight: 500;
+}
+.standings-table {
+  margin-bottom: 20px;
+}
+/* Align header text to the bottom */
+.header,
+.group-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.header {
+  border-bottom-color: #555;
+  font-size: 10px;
+  font-weight: 400;
+}
+/* Highlight headers when sorting */
+.header:hover,
+.header[aria-sort="ascending"],
+.header[aria-sort="descending"] {
+  background-color: #eee;
+}
+.border-left {
+  border-left: 2px solid #555;
+}
+/* Use box-shadow to create row borders that appear behind vertical borders */
+.cell {
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+}
+.group-last .cell {
+  box-shadow: inset 0 -2px 0 #555;
+}
+.team {
+  display: flex;
+  align-items: baseline;
+}
+.record {
+  margin-left: 5px;
+  color: #999;
+  font-size: 10px;
+}
+.state-name {
+  font-size: 9px;
+  font-weight: 400;
+}
+.flag {
+  margin-right: 8px;
+  height: 11px;
+  border: 1px solid #f0f0f0;
+}
+.group {
+  font-size: 8px;
+}
+.number {
+  font-family: Karla, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  white-space: pre;
+}
+.date-rating {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 50%;
+  color: #000;
+  font-size: 11px;
+  letter-spacing: 0px;
+}
+```
+
+```{css echo=FALSE}
+/* rmarkdown html documents */
+.main-container {
+  max-width: 1054px !important;
+}
+h1.title {
+  display: none;
+}
+/* pkgdown articles */
+.contents {
+  width: 1054px;
+}
+.page-header {
+  display: none;
+}
+
+```
+
+```{css, echo=FALSE}
+
+
+.container-fluid.main-container{
+max-width: 300%
+}
+.tabset{
+    display: flex;
+}
+
+h1.title {
+  font-size: 20px;
+  color: DarkBlue;
+  background-color:#009ACD;
+  width:100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  height:120px;
+  margin-left:-100px;
+}
+
+h2 { /* Header 2 */
+    font-size: 12px;
+  color: #0020C2;
+}
+
+.nav.nav-pills {
+    flex: 15%;
+    width: 75%;
+}
+.nav.nav-pills li{
+    width: 75%;
+}
+.tab-content{
+    flex: 85%;
+    width:75%
+  
+}
+
+d-title {
+    visibility: hidden;
+  }
+
+
+```
