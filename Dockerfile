@@ -1,13 +1,14 @@
 # Use the rocker/shiny base image
 FROM rocker/shiny:latest
 
-# Install system dependencies (if any)
-# Example for common dependencies; adjust as needed
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libcurl4-gnutls-dev \
     libssl-dev \
     libxml2-dev \
     libpq-dev \
+    pandoc \
+    pandoc-citeproc \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R packages
@@ -20,5 +21,5 @@ COPY . /srv/shiny-server/
 # Make the ShinyApp available at port 3838
 EXPOSE 3838
 
-# Run the app
-CMD ["R", "-e", "shiny::runApp('/srv/shiny-server/', host = '0.0.0.0', port = 3838)"]
+# Serve the R Markdown document as a Shiny app
+CMD ["R", "-e", "rmarkdown::run('/srv/shiny-server/dashboard.Rmd', shiny_args = list(port = 3838, host = '0.0.0.0'))"]
