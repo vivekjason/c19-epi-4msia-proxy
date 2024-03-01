@@ -11,9 +11,10 @@ RUN apt-get update && apt-get install -y \
     pandoc-citeproc \
     && rm -rf /var/lib/apt/lists/*
 
-# Install R packages
-# Customize this list based on the packages your app uses
-RUN R -e "install.packages(c('shiny', 'tidyverse', 'plotly', 'scales', 'reactable', 'rsconnect', 'packrat', 'htmltools', 'EpiEstim', 'readxl', 'readr', 'zoo', 'lubridate', 'arrow', 'httr', 'jsonlite', 'curl', 'MMWRweek', 'viridis', 'rmarkdown', 'knitr'), repos='https://cran.rstudio.com/')"
+# Install renv & restore packages
+COPY renv.lock /srv/shiny-server/renv.lock
+RUN R -e "install.packages('renv', repos = 'https://cloud.r-project.org')"
+RUN R -e "setwd('/srv/shiny-server'); renv::restore()"
 
 # Copy your Shiny app's files into the container
 COPY . /srv/shiny-server/
